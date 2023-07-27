@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/src/output.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/favicon.jpg">
+    <title>Ecommerce</title>
+</head>
+
+<body>
+
+    <header class="pt-3 bg-white">
+        <nav class="justify-around flex pt-3">
+            <a href="./index.html"> <img src="../assets/logo.png" alt="logo" width="150px"> </a>
+            
+    
+            <div>
+                <input type="text" id="buscador" style="width: 40vw;" class="border-gray-300 focus:border-blue-500 rounded-md shadow-md py-2 px-3 text-gray-700 " placeholder="Escriba aquí...">       
+                <button type="submit" class="pl-2">Buscar</button>
+            </div>
+            
+            <div class="pt-2">
+                <ul>
+                    <select id="selectOrden" aria-label=".form-select-sm example">
+                      <option selected>Ordenar por:</option>
+                      <option value="1">Mayor a menor</option>
+                      <option value="2">Menor a mayor</option>
+                      <option value="3">Alfabeticamente</option>
+                    </select>
+                </ul>
+            </div>
+            
+            <div class="pt-2">
+                <a href="#" id="inicioSesion">Iniciar sesión</a>
+                <a href="#" class="pl-5 pr-5" id="registrarse">Registrarse</a>      
+            </div>
+
+            <div class="container-icon">
+              <div class="container-cart-icon">
+                <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito"><img src="../assets/carrito.png" alt="img carrito" width="35px"></a>
+              </div>
+            </div>
+      
+            
+        </nav>
+    </header>
+
+    <main class="bg-slate-50 pt-3">
+
+        <div class="mt-3 justify-center items-center">
+            <div id="coincidencia" class="bg-slate-50"></div>
+                <div id="productos" class="flex w-full gap-7 flex-wrap h-fit justify-center ">
+                
+                </div>
+        </div>
+
+<!--         <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-bodyCarrito">
+                  
+                </div>
+                <div class="row ml-ato">
+                  <p id="precioTotal"></p>
+                </div>
+                <div class="modal-footer">
+                  
+                  
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+                </div>
+              </div>
+            </div>
+          </div> -->
+    
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../js/arrayProductos.js"></script>
+        <script src="../js/main.js"></script>
+
+    </main>
+
+    <footer>
+
+
+    </footer>
+
+</body>
+
+</html>
