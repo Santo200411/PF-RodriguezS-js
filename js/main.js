@@ -1,11 +1,8 @@
 let productosDiv = document.getElementById("productos")
 let selectOrden = document.getElementById("selectOrden")
 let buscador = document.getElementById("buscador")
+let buscar = document.getElementById("buscar")
 let coincidencia = document.getElementById("coincidencia")
-let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
-let botonCarrito = document.getElementById("botonCarrito")
-let precioTotal = document.getElementById("precioTotal")
-let precioTotalDolar = document.getElementById("precioTotalDolar") 
 let inicioSesion = document.getElementById("inicioSesion")
 let registrarse = document.getElementById("registrarse")
 
@@ -74,56 +71,7 @@ function mostrarProductos(array){
     }
  }
  
- function cargarProductosCarrito(array){
-   modalBodyCarrito.innerHTML = ``
-   array.forEach((productoEnCarrito)=>{
-      modalBodyCarrito.innerHTML += `
-   
-        <div class="itemCard border-primary mb-3" id ="productoEnCarrito${productoEnCarrito.id}" style="max-width: 540px;">
-                 <img class="card-img-top" height="300px" src="assets/${productoEnCarrito.imagen}" alt="">
-                 <div class="card-body">
-                        <h4 class="card-title">${productoEnCarrito.titulo}</h4>
-                        <p class="card-text">${productoEnCarrito.autor}</p>
-                         <p class="card-text">$${productoEnCarrito.precio}</p> 
-                         <button class= "btn btn-danger" id="botonEliminar${productoEnCarrito.id}"><i class="fas fa-trash-alt"></i></button>
-                 </div>    
-            </div>
-      
-   `
-   })
-   
-   array.forEach((productoCarrito) => {
-      document.getElementById(`botonEliminar${productoCarrito.id}`).addEventListener("click", () => {
-         console.log(`Eliminar producto`)
-         let cardProducto = document.getElementById(`productoCarrito${productoCarrito.id}`)
-         cardProducto.remove()
-         let productoEliminar = array.find((producto) => producto.id == productoCarrito.id)
-         console.log(productoEliminar)
-         let posicion = array.indexOf(productoEliminar)
-         console.log(posicion)
-         array.splice(posicion,1)
-         console.log(array)
-         localStorage.setItem("carrito", JSON.stringify(array))
 
-         calcularTotal(array)
-      })
-   })
-   calcularTotal(array)
-   
-}
- 
- function calcularTotal(array){
-    let total = array.reduce((acc, productoCarrito)=> acc + productoCarrito.precio , 0)
-    total == 0 ? precioTotal.innerHTML= `No hay productos en el carrito` : precioTotal.innerHTML = `El total es <strong>${total}</strong>`
- 
- }
-
- function calcularTotalDolares(array){
-   let total = array.reduce((acc, productoCarrito)=> acc + productoCarrito.precio , 0)
-   total = total / valorDolar
-   total == 0 ? precioTotal.innerHTML= `No hay productos en el carrito` : precioTotalDolar.innerHTML = `El valor total en Dolar Blue es <strong>${total}</strong>`
-
-}
  
  function ordenarMenorMayor(array){
     const menorMayor = [].concat(array)
@@ -183,14 +131,12 @@ function mostrarProductos(array){
     }
  }
  )
- buscador.addEventListener("input", () => {
+ buscar.addEventListener("click", () => {
     buscarInfo(buscador.value, productos)
  })
  
  botonCarrito.addEventListener("click", () => {
-   console.log(productosEnCarrito)
-   console.log("si")
-
+   console.log("si")   
    cargarProductosCarrito(productosEnCarrito)
  })
 

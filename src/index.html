@@ -17,7 +17,7 @@
     
             <div>
                 <input type="text" id="buscador" style="width: 40vw;" class="border-gray-300 focus:border-blue-500 rounded-md shadow-md py-2 px-3 text-gray-700 " placeholder="Escriba aquí...">       
-                <button type="submit" class="pl-2">Buscar</button>
+                <button type="submit" id="buscar" class="pl-2">Buscar</button>
             </div>
             
             <div class="pt-2">
@@ -36,11 +36,11 @@
                 <a href="#" class="pl-5 pr-5" id="registrarse">Registrarse</a>      
             </div>
 
-            <div class="container-icon">
-              <div class="container-cart-icon">
-                <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito"><img src="../assets/carrito.png" alt="img carrito" width="35px"></a>
-              </div>
+        
+            <div class="hover:cursor-pointer"> 
+              <a href="./carrito.html" id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito"><img src="../assets/carrito.png" alt="img carrito" width="35px"></a>
             </div>
+         
       
             
         </nav>
@@ -55,30 +55,7 @@
                 </div>
         </div>
 
-<!--         <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="modal-bodyCarrito">
-                  
-                </div>
-                <div class="row ml-ato">
-                  <p id="precioTotal"></p>
-                </div>
-                <div class="modal-footer">
-                  
-                  
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
     
-
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../js/arrayProductos.js"></script>
         <script src="../js/main.js"></script>
