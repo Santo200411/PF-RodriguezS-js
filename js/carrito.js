@@ -1,28 +1,78 @@
-let carritoDiv = document.getElementById("carritoDiv")
+let modalCarrito = document.getElementById("modalCarrito")
+let botonCarrito = document.getElementById("botonCarrito")
+let btnSalir = document.getElementById("btnSalir")
+let carritoDiv = document.getElementById("containerCarrito")
+let salir = document.getElementById("salir")
+let precioTotalDiv = document.getElementById("precioTotal")
+let precioTotalDolarDiv = document.getElementById("precioTotalDolares")
+let btnComprar = document.getElementById("btnComprar")
+
 
 
 
 let carrito = localStorage.getItem("carrito")
 let carritoArray = JSON.parse(carrito);
-console.log(carritoArray);
-cargarProductosCarrito(carritoArray);
+
+let valorDolar
+fetch("https://api.bluelytics.com.ar/v2/latest")
+.then((res) => res.json())
+.then((info) =>{
+    console.log(info.blue.value_avg)
+    valorDolar = info.blue.value_avg;
+   })
+
+
+botonCarrito.addEventListener("click", () => {
+   modalCarrito.classList.remove('hidden');
+   cargarProductosCarrito(carritoArray);
+})
+
+salir.addEventListener("click", () => {
+   modalCarrito.classList.add('hidden');
+})
+
+btnSalir.addEventListener("click", () => {
+   modalCarrito.classList.add('hidden');
+})
+
+btnComprar.addEventListener("click", () => {
+   Swal.fire({
+      text:`Muchas gracias por la compra! Nos comunicaremos en la brevedad para coordinar el envio de lo/s producto/s`,
+      confirmButtonColor: "blue",
+      icon: "success",
+   })
+})
+
+
+
 
 function cargarProductosCarrito(array){
-    carrito.innerHTML = ``
-    array.forEach((productoCarrito)=>{
-       carrito.innerHTML += `
-       
-         <div class="w-full h-fit " id ="productoCarrito${productoCarrito.id}">
-                    <div class="flex w-full h-fit">
-                        h4 class="">${productoCarrito.nombre}</h4>
-                        <div class= " text-end">
-                            <p class="">$${productoCarrito.precio}</p> 
-                        <div>
-                        <button class=" " id="botonEliminar${productoCarrito.id}">
-                            <img src="../assets/x.png" class=" h-3" alt="Eliminar producto">
-                        </button>
-                  </div>    
+   carritoDiv.innerHTML = ``
+    array.forEach((productoCarrito)=>{ 
+      carritoDiv.innerHTML += `
+
+             <li class="flex py-6" id ="productoCarrito${productoCarrito.id}">
+             <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+               <img src="../assets/${productoCarrito.imagen}" alt="${productoCarrito.nombre}" class=" w-24 object-cover object-center">
              </div>
+      
+             <div class="ml-4 flex flex-1 flex-col">
+               <div>
+                 <div class="flex justify-between text-base font-medium text-gray-900">
+                   <h3>
+                     <a href="#">${productoCarrito.nombre}</a>
+                   </h3>
+                   <p class="ml-4">$ ${productoCarrito.precio}</p>
+                 </div>
+               </div>
+               <div class="flex flex-1 items-end justify-between text-sm">
+      
+                 <div class="flex">
+                   <button type="button" id="botonEliminar${productoCarrito.id}" class="font-medium text-indigo-600 hover:text-indigo-500">Borrar</button>
+                 </div>
+               </div>
+             </div>
+           </li>
        
     `
     })
@@ -43,18 +93,21 @@ function cargarProductosCarrito(array){
        })
     })
     calcularTotal(array)
+    calcularTotalDolares(array)
     
  }
   
   function calcularTotal(array){
      let total = array.reduce((acc, productoCarrito)=> acc + productoCarrito.precio , 0)
-     total == 0 ? precioTotal.innerHTML= `No hay productos en el carrito` : precioTotal.innerHTML = `El total es <strong>${total}</strong>`
+     precioTotalDiv.innerHTML = `$ ${total}`;
   
   }
  
   function calcularTotalDolares(array){
     let total = array.reduce((acc, productoCarrito)=> acc + productoCarrito.precio , 0)
+    console.log(total)
     total = total / valorDolar
-    total == 0 ? precioTotal.innerHTML= `No hay productos en el carrito` : precioTotalDolar.innerHTML = `El valor total en Dolar Blue es <strong>${total}</strong>`
+    total = total.toFixed(2);
+    precioTotalDolarDiv.innerHTML = `$ ${total}`;
  
  }

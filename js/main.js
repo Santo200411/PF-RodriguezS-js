@@ -6,13 +6,7 @@ let coincidencia = document.getElementById("coincidencia")
 let inicioSesion = document.getElementById("inicioSesion")
 let registrarse = document.getElementById("registrarse")
 
-let valorDolar
-fetch("https://api.bluelytics.com.ar/v2/latest")
-.then((res) => res.json())
-.then((info) =>{
-    console.log(info.blue.value_avg)
-    valorDolar = info.blue.valur_avg
-})
+
 
 mostrarProductos(productos)
 
@@ -30,13 +24,15 @@ function mostrarProductos(array){
     for (let producto of array) {
         let nuevoProductoDiv = document.createElement("div");
         nuevoProductoDiv.className = "col-10 col-md-5 col-lg-4 my-2";
-        nuevoProductoDiv.innerHTML = `<div id="${producto.id}" class="itemCard overflow-hidden" style="width: 18rem;">
-                                      <img class="" style="height: 200px;" src="../assets/${producto.imagen}" alt="${producto.nombre}">
+        nuevoProductoDiv.innerHTML = `<div id="${producto.id}" class="overflow-hidden bg-gray-300 shadow-sm" style="width: 18rem;">
+                                      <img class=" w-full h-full rounded-lg" style="height: 200px;" src="../assets/${producto.imagen}" alt="${producto.nombre}">
                                       <div class="card-body">
                                          <h4 class="card-title">$ ${producto.precio}</h4>
                                          <p>${producto.nombre}</p>
-                                      <button id="agregarBtn${producto.id}" >Agregar al carrito</button>
-                                      </div>
+                                         <button id="agregarBtn${producto.id}">
+                                         Agregar al carrito
+                                       </button>                                                                            
+                                        </div>
                                    </div>`;
         productosDiv.appendChild(nuevoProductoDiv);  
     
@@ -133,11 +129,6 @@ function mostrarProductos(array){
  )
  buscar.addEventListener("click", () => {
     buscarInfo(buscador.value, productos)
- })
- 
- botonCarrito.addEventListener("click", () => {
-   console.log("si")   
-   cargarProductosCarrito(productosEnCarrito)
  })
 
  inicioSesion.addEventListener("click", () => {
